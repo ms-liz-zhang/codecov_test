@@ -1,11 +1,19 @@
 require 'simplecov'
 require 'simplecov-lcov'
+require 'codecov'
 SimpleCov::Formatter::LcovFormatter.config do |c|
   c.report_with_single_file = true
   c.lcov_file_name = 'code_coverage_test.lcov' # default: "YOUR_PROJECT_NAME.lcov"
 end
 
-SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+class SimpleCov::Formatter::MergedFormatter
+  def format(result)
+    SimpleCov::Formatter::Codecov.new.format(result)
+    SimpleCov::Formatter::LcovFormatter.new.format(result)
+  end
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
 SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

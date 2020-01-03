@@ -68,3 +68,5 @@ gem "simplecov", "~> 0.17.1"
 gem "coveralls", "~> 0.7.1"
 
 gem "simplecov-lcov", "~> 0.7.0"
+
+gem "codecov", "~> 0.1.16"
