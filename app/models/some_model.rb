@@ -18,4 +18,8 @@ class SomeModel < ApplicationRecord
   def blah
     return false
   end
+
+  def blah2
+    return false
+  end
 end
