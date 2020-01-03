@@ -1,0 +1,21 @@
+name: Ruby
+
+on: ["push", "pull_request"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Setup SQL lite 3
+      run: sudo apt-get install -y libsqlite3-dev
+
+    - name: Run rspec
+      run: gem install bundler; bundle install; CODECOV_TOKEN="45a16cdb-7427-4f44-8927-bdd79b748389" rspec
